@@ -13,27 +13,29 @@ from sympy import simplify
 import warnings
 warnings.filterwarnings("ignore")
 
-unknown=['x1','x2','x3']
+unknown=['x1','x2','x3','x4','x5']
 binary_op=['+','-','*','/','^']
 unar_op=['U-','ln','exp']
-a=random.randint(0,15)
+a=random.randint(0,45)
 b=random.randint(a+1,100)
-start_length=15  #10
+start_length=11  #10
 max_length=35   #25
 
 num_eqn=8#7 - norm
 #num_generation=5
-num_generation=14 #20-30 norm
+num_generation=10 #20-30 norm
 #num_generation=3
 
-data_full=pd.read_excel('data_W.xlsx')
-data=data_full.sample(frac=0.75)
+data_full=pd.read_excel('data_do_25MPa.xlsx')
+data=data_full[data_full.index %5 != 0]
 
-x1=data['T, K']
-x2=data['PRES']
-x3=data['Molar mass, g/mol']
+x1=data['T']
+x2=data['P']
+x3=data['Molar_mass']
+x4=data['CO2']
+x5=data['N2']
 
-y=data['W, m/s']
+y=data['Z']
 
 ##print(list(x1))
 ##print(list(x2))
@@ -48,14 +50,16 @@ data_test.to_excel('data_test.xlsx')
 x1.index=np.arange(len(x1))
 x2.index=np.arange(len(x2))
 x3.index=np.arange(len(x3))
-
+x4.index=np.arange(len(x4))
+x5.index=np.arange(len(x5))
 
 y.index=np.arange(len(y))
 
 x1=np.array(x1)
 x2=np.array(x2)
 x3=np.array(x3)
-
+x4=np.array(x4)
+x5=np.array(x5)
 
 y=np.array(y)
 
